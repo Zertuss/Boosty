@@ -37,7 +37,7 @@ public class BotListener implements EventListener{
 				event.getAuthor().openPrivateChannel().complete().sendMessage(builder.build()).complete();
 			} else if (msg.equals("=delmsg")) {
 				if(BotDiscord.admin.contains(event.getAuthor().getId())) {
-					event.getAuthor().openPrivateChannel().complete().sendMessage("Maintenance en cours... Retour bientôt...").queue();
+					event.getAuthor().openPrivateChannel().complete().sendMessage("Maintenance en cours... Retour bientôt... Ou pas").queue();
 				}else {
 					event.getAuthor().openPrivateChannel().complete().sendMessage("Vous n'avez pas **la permission** de faire cette **commande** !").complete();
 				}
