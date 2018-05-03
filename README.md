@@ -1,0 +1,2 @@
+# Boosty
+Bot for Discord
