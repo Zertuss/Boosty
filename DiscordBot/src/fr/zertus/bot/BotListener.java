@@ -2,6 +2,7 @@ package fr.zertus.bot;
 
 import java.awt.Color;
 
+import fr.zertus.bot.music.MusicCommand;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.Event;
@@ -30,12 +31,21 @@ public class BotListener implements EventListener{
 				builder.setTitle("__**Liste des commandes**__");
 				builder.setColor(Color.GREEN);
 				builder.addField("=infos", "Obtenir les informations sur le serveur", false);
+				builder.addField("=play", "Jouer un son => Rajouter l'url youtube derrière la commande !", false);
+				builder.addField("=skip", "Skip un son", false);
+				builder.addField("=clear", "Vider la liste de lecture", false);
 				builder.addField("=addadmin", "Ajouter un admin", false);
 				builder.addField("=deladmin", "Retirer un admin", false);
 				builder.addField("=delmsg", "Retire les 10 derniers messages", false);
 				
 				event.getAuthor().openPrivateChannel().complete().sendMessage(builder.build()).complete();
-			} else if (msg.equals("=delmsg")) {
+			} else if(msg.equals("play")) { 
+				MusicCommand.play(event.getGuild(), event.getTextChannel(), event.getAuthor(), msg);
+			} else if(msg.equals("skip")) { 
+				MusicCommand.skip(event.getGuild(), event.getTextChannel());
+			} else if(msg.equals("clear")) { 
+				MusicCommand.clear(event.getTextChannel());
+			} else if (msg.equals("delmsg")) {
 				if(BotDiscord.admin.contains(event.getAuthor().getId())) {
 					event.getAuthor().openPrivateChannel().complete().sendMessage("Maintenance en cours... Retour bientôt... Ou pas").queue();
 				}else {
